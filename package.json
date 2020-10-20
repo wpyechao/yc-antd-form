@@ -1,0 +1,41 @@
+{
+  "name": "yc-antd-form",
+  "version": "1.0.0",
+  "description": "better form based on antd3",
+  "main": "./lib/index.js",
+  "module": "./es/index.js",
+  "types": "./lib/index.d.ts",
+  "files": [
+    "dist",
+    "lib",
+    "es",
+    "README.md",
+    "LICENSE",
+    "package.json"
+  ],
+  "scripts": {
+    "start": "dumi dev",
+    "build": "father-build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "react",
+    "antd",
+    "form"
+  ],
+  "author": "pingyechao",
+  "license": "ISC",
+  "dependencies": {
+    "lodash.get": "^4.4.2",
+    "yc-hooks": "^1.0.1"
+  },
+  "devDependencies": {
+    "@types/lodash.get": "^4.4.6",
+    "antd": "^3.26.18",
+    "dumi": "^1.0.33",
+    "eslint-config-pyc": "^2.0.2",
+    "father-build": "^1.18.1",
+    "react": "^16.13.1",
+    "typescript": "^3.9.6"
+  }
+}
