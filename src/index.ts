@@ -7,5 +7,6 @@ export { default as Submit } from './Submit';
 
 export { default as ConfigForm } from './ConfigForm';
 
+export * from './types'
 // import { ListForm } from './ListForm';
 
