@@ -26,21 +26,6 @@ export type ContextValue = {
   initialValue: InitialValue;
 };
 
-// render函数
-export type RenderType = (
-  f: React.ReactNode,
-  props: Obj,
-) => React.ReactNode | any;
-
 // 是否影藏
 export type HiddenType = ((form: FormInstance) => boolean) | boolean;
 
-
-// export interface IFieldProps extends FormItemProps {
-//   id?: string
-//   name?: string
-//   options?: GetFieldDecoratorOptions
-//   fieldKey?: string | string[]
-//   hidden?: boolean
-//   noStyle?: boolean
-// };
