@@ -1,6 +1,4 @@
 import { WrappedFormUtils } from 'antd/es/form/Form';
-export { FormComponentProps, FormProps, FormItemProps } from 'antd/es/form';
-export { GetFieldDecoratorOptions } from 'antd/es/form/Form';
 export declare type FormInstance = WrappedFormUtils<any>;
 export declare type Store = {
     [name: string]: any;

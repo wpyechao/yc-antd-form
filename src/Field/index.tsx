@@ -4,15 +4,14 @@ import { Form } from 'antd';
 import { useFormContext } from '../Context';
 import {
   HiddenType,
-  FormItemProps,
   FormInstance,
-  GetFieldDecoratorOptions
-} from '../types';
+} from '../types'
+import { GetFieldDecoratorOptions } from 'antd/es/form/Form';
+import { FormItemProps } from 'antd/es/form';
 
-export interface IFieldProps extends FormItemProps {
+export interface IFieldProps extends FormItemProps, GetFieldDecoratorOptions {
   id?: string
   name?: string
-  options?: GetFieldDecoratorOptions
   fieldKey?: string | string[]
   hidden?: boolean
   noStyle?: boolean
@@ -22,23 +21,42 @@ const Field: React.FC<IFieldProps> = (props) => {
   const { form, initialValue } = useFormContext();
   const {
     name,
-    options,
     fieldKey,
     hidden = false,
     children,
     noStyle = false,
+    // getFieldDecorator options
+    valuePropName = 'value',
+    trigger = 'onChange',
+    getValueFromEvent,
+    getValueProps,
+    validateTrigger = 'onChange',
+    rules,
+    normalize,
+    validateFirst = false,
+    preserve,
+    initialValue: initialValueFromItem,
+    // getFieldDecorator options
     ...restProps
   } = props;
 
-  if (calculateHidden(form, hidden)) return null;
+  if (calculateHidden(form, hidden)) return null
 
   // // name 存在，用作表单
   if(name) {
     // 优先使用props里面的initialValue
     // fieldKey 用于ListForm
     const field = form.getFieldDecorator(name, {
-      initialValue: get(initialValue, (fieldKey || name)), 
-      ...options,
+      initialValue: initialValueFromItem ?? get(initialValue, (fieldKey || name)), 
+      valuePropName,
+      trigger,
+      getValueFromEvent,
+      getValueProps,
+      validateTrigger,
+      rules,
+      normalize,
+      validateFirst,
+      preserve,
     })(children)
 
     if(noStyle) {

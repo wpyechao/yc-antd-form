@@ -1,8 +1,5 @@
 import { WrappedFormUtils } from 'antd/es/form/Form';
 
-export { FormComponentProps, FormProps, FormItemProps } from 'antd/es/form';
-export { GetFieldDecoratorOptions } from 'antd/es/form/Form'
-
 export type FormInstance = WrappedFormUtils<any>
 
 // 表单store

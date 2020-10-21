@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { FormItemProps, GetFieldDecoratorOptions } from '../types';
-export interface IFieldProps extends FormItemProps {
+import { GetFieldDecoratorOptions } from 'antd/es/form/Form';
+import { FormItemProps } from 'antd/es/form';
+export interface IFieldProps extends GetFieldDecoratorOptions, FormItemProps {
     id?: string;
     name?: string;
-    options?: GetFieldDecoratorOptions;
     fieldKey?: string | string[];
     hidden?: boolean;
     noStyle?: boolean;

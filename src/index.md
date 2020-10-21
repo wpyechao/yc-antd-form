@@ -41,26 +41,11 @@ export default () => {
 
 ## 进阶用法
 
+<code src="./demo/demo1.tsx" />
+
 ## 样式按需加载
 
-**注意：版本 1.0.8 及以上已经自动集成了按需加载，可以不用配置**
-
-由于封装了 antd 的组件，所以需要重新配置按需加载，配置方式很简单，只需如下操作
-
-基于 babel-plugin-import 如果没安装要先安装 babel-plugin-import
-
-```javascript
-const importConfig = require('yc-antd-form/es/import.config');
-
-// 配置到babel-loader的 plugin中去
-const options = {
-  plugins: [
-    // 其他的plugin
-    [],
-    ...importConfig,
-  ],
-};
-```
+**已经自动集成了按需加载**
 
 ## Api
 
@@ -95,39 +80,21 @@ const App = () => {
 | onSubmit       | 原始的表单的回调                                        | (e) => void     |
 | 其他           | 其他所有 antd3 Form 支持的参数                          |                 |
 
-**新增一个 form.getSelectedFieldsValue(selector)方法，用于对表单值进行过滤**
-
 比如 ↓
 
-```javascript
-// 转换moment对象
-const values = form.getSelectedFieldsValue((v) => {
-  if(v instanceof moment)
-    return v.valueOf()
-  return v
-})
-
-// 转换文件数组
-const values = form.getSelectedFieldsValue((v) => {
-  if(Array.isArray(v)) {
-    return v.filter(i => i.status === 'done)
-  }
-  return v
-})
-```
 
 #### 2. Field
 
 表单 item 组件
 
-| 参数      | 说明                                                                              | 类型                            |
-| --------- | --------------------------------------------------------------------------------- | ------------------------------- |
-| name      | 表单键名                                                                          | string                          |
-| hidden    | 是否在页面中隐藏                                                                  | boolean                         | (form) => boolean |
-| itemProps | 默认是 Form.Item 组件上的参数，也可以在自定义 render 的方法中拿到，作用到其他地方 | object                          |
-| render    | 自定义表单组件样式的函数                                                          | (field, itemProps) => ReactNode |
-| fieldKey  | 动态增减表单需要用到的字段                                                        | string                          |
-| 其他      | 其他所有 getFieldDecorator 的 options 支持的参数                                  |                                 |
+| 参数      | 说明                        | 类型                            |
+| --------- | ------------------------------ | ------------------------------- |
+| name      | 表单键名             | string                          
+| hidden    | 是否在页面中隐藏           | boolean          | (form) => boolean |
+| itemProps | 默认是 Form.Item 组件上的参数，也可以在自定义 render 的方法中拿到，作用到其他地方 | object         |
+| render    | 自定义表单组件样式的函数     | (field, itemProps) => ReactNode |
+| fieldKey  | 动态增减表单需要用到的字段   | string    |
+| 其他      | 其他所有 getFieldDecorator 的 options 支持的参数    |       |
 
 #### 3. Reset
 

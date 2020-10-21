@@ -2,7 +2,8 @@ import * as React from 'react';
 import { Form as AntdForm } from 'antd';
 import { Provider } from '../Context';
 
-import { InitialValue, Store, FormComponentProps, FormProps, FormInstance } from './../types';
+import { InitialValue, Store, FormInstance } from './../types';
+import { FormComponentProps, FormProps } from 'antd/es/form';
 
 export interface IFormProps extends FormComponentProps, FormProps {
   form: FormInstance

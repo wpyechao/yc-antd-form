@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Button } from 'antd';
 import { useFormContext } from '../Context';
 
-import { ButtonProps } from 'antd/lib/button';
+import { ButtonProps } from 'antd/es/button';
 
 // 重置的按钮
 const Reset: React.FC<ButtonProps> = props => {

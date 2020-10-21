@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { InitialValue, Store, FormComponentProps, FormProps, FormInstance } from './../types';
+import { InitialValue, Store, FormInstance } from './../types';
+import { FormComponentProps, FormProps } from 'antd/es/form';
 export interface IFormProps extends FormComponentProps, FormProps {
     form: FormInstance;
     initialValue: InitialValue;
