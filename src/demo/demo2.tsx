@@ -12,6 +12,7 @@ import {
   Submit,
   Reset,
 } from 'yc-antd-form';
+import { truncateSync } from 'fs';
 
 const formLayout = {
   labelCol: { span: 3 },
@@ -26,45 +27,24 @@ const inlineConfig = {
 
 const config = [
   {
-    itemProps: { label: '姓名' },
+    label: '姓名',
     name: 'name',
-    initialValue: 'init from config/props',
+    rules: [{ required: true }],
     children: <Input />,
   },
   {
     id: 'pac',
-    itemProps: { label: '省市', required: true, gutter: 24 },
+    label: '省市',
+    required: true,
     children: [
       {
-        itemProps: { span: 12 },
-        noStyle: true,
         name: 'province',
+        rules: [{ required: true }],
         children: <Input />,
       },
       {
-        itemProps: { span: 12 },
-        noStyle: true,
         name: 'city',
-        children: <Input />,
-      },
-    ],
-  },
-  {
-    id: 'inline',
-    itemProps: { wrapperCol: { span: 24 } },
-    children: [
-      {
         rules: [{ required: true }],
-        noStyle: true,
-        itemProps: { span: 12, label: 'inline1', ...inlineConfig },
-        name: 'inline1',
-        children: <Input />,
-      },
-      {
-        rules: [{ required: true }],
-        noStyle: true,
-        itemProps: { span: 12, label: 'inline3', ...inlineConfig },
-        name: 'inline3',
         children: <Input />,
       },
     ],
@@ -75,12 +55,13 @@ const ConfigFormPage = props => {
   const [form] = useForm();
 
   const handleFinish = v => {
+    console.log(form.current)
     console.log(v);
   };
 
   return (
     <Form
-      form={form}
+      wrappedComponentRef={form}
       initialValue={{
         city: 'city',
       }}

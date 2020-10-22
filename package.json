@@ -15,7 +15,7 @@
   ],
   "scripts": {
     "start": "dumi dev",
-    "build": "father-build",
+    "build": "tsc && father-build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -27,7 +27,7 @@
   "license": "ISC",
   "dependencies": {
     "lodash.get": "^4.4.2",
-    "yc-hooks": "^1.0.1"
+    "yc-hooks": "^1.0.2"
   },
   "devDependencies": {
     "@types/lodash.get": "^4.4.6",

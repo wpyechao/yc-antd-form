@@ -16,7 +16,7 @@ type Field = {
   name: number;
 };
 
-type Add = (field?: Obj) => void;
+type Add = (field?: Field) => void;
 
 type Remove = (key: number) => void;
 
@@ -35,12 +35,12 @@ const ListForm: React.FC<ListFormProps> = props => {
   const { form, initialValue = {} } = useFormContext();
   const { name, children, initialLength = 0 } = props;
 
-  // 对象里面每个字段都是undefined的或者需要去掉
+  // 对象里面每个字段都是undefined的或者非真的值需要去掉
   const fieldLength = (get(initialValue, name, []).filter((i: Obj | string) => {
     if (typeof i === 'object') {
       return !Object.keys(i).every(k => i[k] === void 0);
     } else {
-      return i !== '';
+      return !!i;
     }
   }).length || initialLength) as number;
 

@@ -51,15 +51,18 @@ export default () => {
 
 ### hook
 
-有一个跟 antd4 很像的 useForm，返回的 form 是个 ref，所以需要使用 validateFields 等方法的时候需要通过 form.current.form.validateFields 去获取
+有一个跟 antd4 很像的 useForm，返回的 form 是个 ref，所以需要使用 validateFields 等方法的时候需要通过 form.current.validateFields 去获取
 
 ```javascript
 import { useForm, Form } from 'yc-antd-form';
 
 const App = () => {
   const [form] = useForm();
-  // form方法的获取方式有点不一样
-  const { validateFields } = form.current;
+
+  useEffect(() => {
+    // form方法的获取方式有点不一样，要从current里面获取
+    const { validateFields } = form.current;
+  }, [])
 
   return <Form wrappedComponentRef={form} />;
 };
@@ -73,12 +76,11 @@ const App = () => {
 
 | 参数           | 说明                                                    | 类型            |
 | -------------- | ------------------------------------------------------- | --------------- |
-| form           | useForm 返回的 ref                                      | ref             |
+| wrappedComponentRef   | useForm 返回的 ref                  | ref       |
 | initialValue   | 表单的初始值，可用于表单回显等                          | object          |
 | onFinish       | 直接能拿到表单值的提交回调， 和 onSubmit 同时存在时无效 | (value) => void |
 | onFinishFailed | 验证失败的回调，有 onSubmit 时无效                      | (error) => void |
-| onSubmit       | 原始的表单的回调                                        | (e) => void     |
-| 其他           | 其他所有 antd3 Form 支持的参数                          |                 |
+| 其他           | 其他所有 antd3 Form 支持的props                          |                 |
 
 比如 ↓
 
@@ -89,24 +91,22 @@ const App = () => {
 
 | 参数      | 说明                        | 类型                            |
 | --------- | ------------------------------ | ------------------------------- |
-| name      | 表单键名             | string                          
-| hidden    | 是否在页面中隐藏           | boolean          | (form) => boolean |
-| itemProps | 默认是 Form.Item 组件上的参数，也可以在自定义 render 的方法中拿到，作用到其他地方 | object         |
-| render    | 自定义表单组件样式的函数     | (field, itemProps) => ReactNode |
+| name      | 表单键名             | string          
 | fieldKey  | 动态增减表单需要用到的字段   | string    |
-| 其他      | 其他所有 getFieldDecorator 的 options 支持的参数    |       |
+| hidden    | 是否在页面中隐藏           | boolean          | (form) => boolean ||
+| 其他      | 其他所有 getFieldDecorator 的 options 支持的参数 和 Form.Item支持的props    |       |
 
 #### 3. Reset
 
 重置表单所用到的按钮
 
-参数是所有 antd Button 支持的参数，只有 onClick 被绑定成重置
+参数是所有 antd Button 支持的参数，只有 onClick 被绑定成重置表单
 
 #### 4. Submit
 
 触发表单提交用到的按钮
 
-参数是所有 antd Button 支持的参数，定义了默认的 htmlType="submit" 和 type="primary"
+参数是所有 antd Button 支持的参数，只是定义了默认的 htmlType="submit" 和 type="primary"
 
 #### 5. ConfigForm
 
@@ -120,6 +120,8 @@ const App = () => {
 |        | 数组 item | Field 组件的 props |
 
 具体用法 ↓
+
+<code src="./demo/demo2.tsx" />
 
 #### 6. ListForm
 

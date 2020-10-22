@@ -3,30 +3,28 @@ import { Form as AntdForm } from 'antd';
 import { Provider } from '../Context';
 
 import { InitialValue, Store, FormInstance } from './../types';
-import { FormComponentProps, FormProps } from 'antd/es/form';
+import { FormComponentProps, FormCreateOption, FormProps } from 'antd/es/form';
 
 export interface IFormProps extends FormComponentProps, FormProps {
   form: FormInstance
   initialValue: InitialValue;
   onFinish?: (s: Store | any) => Promise<Store> | void;
   onFinishFailed?: (e: Error) => void;
-  onSubmit?: (e?: React.FormEvent) => void;
 }
 
 // 普通的form组件
-const Form: React.FC<IFormProps> = React.forwardRef<{ form: FormInstance }, IFormProps>((props, ref) => {
+const Form: React.FC<IFormProps> = React.forwardRef<FormInstance, IFormProps>((props, ref) => {
   const {
     form,
     initialValue,
     children,
     onFinish = (v) => v, // 默认的submit方法
     onFinishFailed = console.error, // 验证失败的回调
-    onSubmit, // 如果有submit方法，就覆盖onFinish
     ...restFormProps
   } = props;
 
   // 向上抛出form
-  React.useImperativeHandle(ref, () => ({ form }))
+  React.useImperativeHandle(ref, () => (form))
 
   // 默认的submit方法
   const handleFinish = React.useCallback((e: React.FormEvent) => {
@@ -44,7 +42,7 @@ const Form: React.FC<IFormProps> = React.forwardRef<{ form: FormInstance }, IFor
 
   return (
     <Provider value={{ form, initialValue }}>
-      <AntdForm {...restFormProps} onSubmit={onSubmit || handleFinish}>
+      <AntdForm {...restFormProps} onSubmit={handleFinish}>
         {children}
       </AntdForm>
     </Provider>
@@ -52,3 +50,5 @@ const Form: React.FC<IFormProps> = React.forwardRef<{ form: FormInstance }, IFor
 })
 
 export default AntdForm.create<IFormProps>()(Form)
+
+export const extendForm = (options: FormCreateOption<IFormProps>) => AntdForm.create<IFormProps>(options)(Form)

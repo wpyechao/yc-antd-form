@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { IFieldProps } from '../types';
+import { IFieldProps } from '../Field';
 interface IFieldPropsWithArray extends IFieldProps {
+    id?: string;
     children: React.ReactNode | IFieldPropsWithArray[];
 }
 interface IConfigFormProps {

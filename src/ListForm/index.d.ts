@@ -1,11 +1,10 @@
 import React from 'react';
-import { Obj } from '../types';
 declare type Field = {
     key: number;
     fieldKey: number;
     name: number;
 };
-declare type Add = (field?: Obj) => void;
+declare type Add = (field?: Field) => void;
 declare type Remove = (key: number) => void;
 declare type Methods = {
     add: Add;
