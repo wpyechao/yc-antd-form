@@ -1,6 +1,6 @@
 {
   "name": "yc-antd-form",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "better form based on antd3",
   "main": "./lib/index.js",
   "module": "./es/index.js",
@@ -15,7 +15,7 @@
   ],
   "scripts": {
     "start": "dumi dev",
-    "build": "tsc && father-build",
+    "build": "father-build && tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -27,7 +27,7 @@
   "license": "ISC",
   "dependencies": {
     "lodash.get": "^4.4.2",
-    "yc-hooks": "^1.0.2"
+    "yc-hooks": "^1.0.3"
   },
   "devDependencies": {
     "@types/lodash.get": "^4.4.6",
