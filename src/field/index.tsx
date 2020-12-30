@@ -10,7 +10,6 @@ import { GetFieldDecoratorOptions } from 'antd/es/form/Form';
 import { FormItemProps } from 'antd/es/form';
 
 export interface IFieldProps extends FormItemProps, GetFieldDecoratorOptions {
-  id?: string
   name?: string
   fieldKey?: string | string[]
   hidden?: boolean
