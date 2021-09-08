@@ -47,7 +47,7 @@ function App() {
   return (
     <Form
       {...formLayout}
-      form={form}
+      wrappedComponentRef={form}
       initialValue={{
         users: [
           { first: 'f1', last: 'l1' },

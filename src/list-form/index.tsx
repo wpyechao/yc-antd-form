@@ -26,20 +26,17 @@ const ListForm: React.FC<IListFormProps> = (props) => {
   const { name, children } = props
   const { form, initialValue } = useFormContext()
 
-  const initialList = React.useMemo<any[]>(() => {
-    return initialValue?.[name] || []
-  }, [initialValue, name])
-
-  React.useEffect(() => {
-    setKey(initialList.length)
-    setFields(initialList.map((_, i) => ({ key: i, fieldKey: i, name: i })))
-  }, [initialList])
-
   // 表单的key 一直往上增 确保不重复
   const [key, setKey] = React.useState(0)
 
   // 表单项数组
   const [fields, setFields] = React.useState<TField[]>([])
+
+  React.useEffect(() => {
+    const initialList = (initialValue?.[name] || []) as any[]
+    setKey(initialList.length)
+    setFields(initialList.map((_, i) => ({ key: i, fieldKey: i, name: i })))
+  }, [])
 
   /** 添加一个 */
   const add = usePersistFn<IMethods['add']>((value) => {
